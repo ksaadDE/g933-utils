@@ -6,12 +6,16 @@
 	icon: Icon made by Freepik perfect from www.flaticon.com"
 	bing.mp3 https://freesound.org/data/previews/91/91926_7037-lq.mp3
 """
-import sys, subprocess
+import sys, subprocess, os
+lpath = os.path.dirname(os.path.abspath(__file__)) + os.path.sep
+print(lpath)
+os.chdir(lpath)
+
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import * 
 
-iconFile = "logitech.png"
+iconFile = lpath + "logitech.png"
 
 m_nMouseClick_X_Coordinate = 0
 m_nMouseClick_Y_Coordinate = 0
