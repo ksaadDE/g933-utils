@@ -1,6 +1,8 @@
 # GUI for g933 Utils
 Basicly shows your Battery Status in the GUI and you have the TrayIcon in the Bar. Same as with the original Logitech Software, except the Features like setting stuff and so on.  For Linux Users a small step forward! :> 
+
 ![showcase](showcase.png)
+
 It also detects if you headsets turns off, is charging or if your Headset reached low/half/high battery.
 
 ## Requirements (Linux only)
