@@ -8,7 +8,7 @@ What it detects:
 2. Low Battery / Half or Full Battery Capacity
 3. Charging / Discharging
 
-The Window remains in the Foreground and you can hide it by minimizing it. By a double click on the TrayIcon you can open it again, but even hide it. By a right click a Menu opens and you can press "exit" to close the Application.
+The Window remains in the Foreground and you can hide it by minimizing it. When the TrayIcon is double clicked, the App hides or shows itself. By a right click a Menu opens and you can click "exit" to close the Application (completly).
 
 You can also add it to the System Start, but due to Security reasons you should set the write and read permissions correctly and your user must be in the "logitech" group (as in g933-utils main repository stated)
 
