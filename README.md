@@ -1,7 +1,7 @@
 # GUI for g933 Utils
-Basicly shows your Battery Status & Capacity and you have the TrayIcon in the TopBar. Same as with the original Logitech Software, except the Features like setting stuff and so on (I'll try to implement it).  Even without bigger functionalities for Linux Users a step forward! :> (small showcase below)
+Basicly shows your Battery Status & Capacity and you have the TrayIcon in the TopBar. Same as with the original Logitech Software, except the Features like setting stuff and so on (I'll try to implement it).  Even without bigger functionalities for Linux Users a step forward! :> (small Showcase below)
 
-![showcase](showcase.png)
+![Showcase](showcase.png)
 
 What it detects:
 1. It detects if your Headset is turned off / turns off / turns on / turned on
