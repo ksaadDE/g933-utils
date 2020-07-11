@@ -1,5 +1,6 @@
 # GUI for g933 Utils
-### currently only Battery Status, TrayIcon and stuff like that
+Basicly shows your Battery Status in the GUI and you have the TrayIcon in the Bar. Same as with the original Logitech Software, except the Features like setting stuff and so on.
+For Linux Users still a advantage! :> 
 
 ## Requirements
 needs Qt5, python and g933-utils
