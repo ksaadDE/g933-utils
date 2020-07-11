@@ -1,4 +1,4 @@
-# g933-utils
+# g933-utils by @ashkitten
 
 [![Gitter](https://badges.gitter.im/g933-utils/Lobby.svg)](https://gitter.im/g933-utils/Lobby)
 
