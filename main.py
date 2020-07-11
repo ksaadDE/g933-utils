@@ -13,6 +13,9 @@ from PyQt5.QtCore import *
 
 iconFile = "logitech.png"
 
+m_nMouseClick_X_Coordinate = 0
+m_nMouseClick_Y_Coordinate = 0
+
 shownNotification_Offline = False
 shownNotification_Full = False
 shownNotification_LessTen = False
@@ -30,6 +33,22 @@ def getLoadState():
 		return stdout.decode('utf-8')
 	except:
 		return -1
+
+def resetNotifications():
+	global shownNotification_Full
+	global shownNotification_Half
+	global shownNotification_LessTen
+	global shownNotification_Offline
+
+	if shownNotification_Full:
+		shownNotification_Full = False
+	if shownNotification_Half:
+		shownNotification_Half = False
+	if shownNotification_LessTen:
+		shownNotification_LessTen = False
+	if shownNotification_Offline:
+		shownNotification_Offline = False
+
 def notificationLessLoad(loadst):
 	global shownNotification_Full
 	global shownNotification_Half
@@ -47,19 +66,35 @@ def notificationLessLoad(loadst):
 	if load > 90 and not shownNotification_Full:
 		print("above 90")
 		trycon.showMessage("Logitech g933", "90% Loaded! :>", icon)
+		resetNotifications()
 		shownNotification_Full = True
 	# if load is less than 45 and  greater than 10% and no notification send
-	if round(load) < 45 and round(load) > 10 and not shownNotification_Half:
+	if round(load) <= 50 and round(load) > 40 and not shownNotification_Half:
 		print("less than half")
-		trycon.showMessage("Logitech g933", "Halftime! 45%", icon)
+		trycon.showMessage("Logitech g933", "Halftime! 50%", icon)
+		resetNotifications()
 		shownNotification_Half = True
 	# if load is less than 10% and no notification already send
 	if load < 10 and not shownNotification_LessTen:
 		print("less 10%")
 		trycon.showMessage("Logitech g933", "Less than 10% battery\n Please charge!", icon)
+		resetNotifications()
 		shownNotification_LessTen = True
 	# set progressBar value
 	progressBar.setValue(int(load))
+
+def mousePressed(event):
+	#mousePressEvent
+	global m_nMouseClick_X_Coordinate
+	global m_nMouseClick_Y_Coordinate
+	m_nMouseClick_X_Coordinate = event.x
+	m_nMouseClick_Y_Coordinate = event.y
+
+def mouseMoved(event):
+	global m_nMouseClick_X_Coordinate
+	global m_nMouseClick_Y_Coordinate
+	window.move(event.globalX(), event.globalY())
+
 def runTimer():
 	global shownNotification_Offline
 	loadst = getLoadState()
@@ -67,18 +102,30 @@ def runTimer():
 	if len(loadst) > 0:
 		label.setText(loadst)
 		if shownNotification_Offline:
-			shownNotification_Offline = False
+			resetNotifications()
+			timer.setInterval(2000)
 			trycon.showMessage("Logitech g933", "I am back mate!\nThanks for using me ;-)", icon)
 			progressBar.show()
 	else:
 		label.setText("turned off")
 		progressBar.hide()
+		timer.setInterval(5000)
+
+@pyqtSlot(QSystemTrayIcon.ActivationReason)
+def tryConActivated(reason):
+        if reason == QSystemTrayIcon.DoubleClick:
+            if window.isHidden():
+                window.show()
+            else:
+                window.hide()
 
 app = QApplication([])
 icon = QIcon(iconFile)
 window = QWidget()
 layout = QVBoxLayout()
 
+labelTitle = QLabel("Logitech G933")
+layout.addWidget(labelTitle)
 label = QLabel(getLoadState())
 layout.addWidget(label)
 
@@ -86,6 +133,7 @@ progressBar = QProgressBar()
 layout.addWidget(progressBar)
 
 trycon = QSystemTrayIcon(icon, parent=app)
+trycon.activated.connect(tryConActivated)
 trycon.show()
 trycon.showMessage("Logitech G933", "Let me know, if you want to see something!", icon)
 
@@ -95,10 +143,12 @@ exitAction.triggered.connect(app.quit)
 
 trycon.setContextMenu(tryconMenu)
 
+window.mousePressEvent = mousePressed
+window.mouseMoveEvent = mouseMoved
 window.setLayout(layout)
-
-#window.resize(600,600)
-window.setWindowFlags(Qt.WindowStaysOnTopHint)
+window.setWindowFlags(Qt.FramelessWindowHint)
+#window.setWindowFlags(Qt.WindowTitleHint)
+#window.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.WindowMinimizeButtonHint)
 
 timer = QTimer()
 timer.timeout.connect(runTimer)
@@ -106,8 +156,10 @@ timer.start(2000)
 
 window.show()
 window.setWindowTitle("Logitech G933")
-window.setStyleSheet("background-color: rgba(255,255,255,0)")
+
+window.setStyleSheet("background-color: rgba(255,255,255,0); color: white")
 label.setStyleSheet("background-color: rgba(0,0,0,0); color:red;")
 progressBar.setStyleSheet("background-color: #05B8CC; color: white;")
+
 app.exec_()
 sys.exit()
