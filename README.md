@@ -1,9 +1,16 @@
 # GUI for g933 Utils
-Basicly shows your Battery Status in the GUI and you have the TrayIcon in the Bar. Same as with the original Logitech Software, except the Features like setting stuff and so on.  For Linux Users a small step forward! :> 
+Basicly shows your Battery Status & Capacity and you have the TrayIcon in the TopBar. Same as with the original Logitech Software, except the Features like setting stuff and so on (I'll try to implement it).  Even without bigger functionalities for Linux Users a step forward! :> (small showcase below)
 
 ![showcase](showcase.png)
 
-It also detects if you headsets turns off, is charging or if your Headset reached low/half/high battery.
+What it detects:
+1. It detects if your Headset is turned off / turns off / turns on / turned on
+2. Low Battery / Half or Full Battery Capacity
+3. Charging / Discharging
+
+The Window remains in the Foreground and you can hide it by minimizing it. By a double click on the TrayIcon you can open it again, but even hide it. By a right click a Menu opens and you can press "exit" to close the Application.
+
+You can also add it to the System Start, but due to Security reasons you should set the write and read permissions correctly and your user must be in the "logitech" group (as in g933-utils main repository stated)
 
 ## Requirements (Linux only)
 needs Qt5, python and g933-utils
