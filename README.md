@@ -27,8 +27,17 @@ https://pypi.org/project/PyQt5/
 you can just pull it out of the repo here  (pre compiled for 64bit) or you just grab it from the fork repo (inside g933-utils folder) and build it yourself.
 
 ## Usage
+Just go into the folder where you have cloned it. Then just run the main.py. If you want to set it in the Starters, when the User logs on, you need to add it to a location in /usr/bin/<folder> and link it in the Startup Properties. 
+  
 #### Set execution rights
 chmod +x main.py
 
 #### Start it
 ./main.py
+
+## Security Notice
+Keep in mind, if you don't assign the right Permissions to your Files, a bad guy could abuse it with your own user Account.
+I prefer to set them as root, and only executeable for others. This can also be absued, if the Bad guy is root (but then you might have fully different problems)
+
+I just warned you and I don't take warranty for this program or it parts.
+You install them on YOUR OWN RISK! 
