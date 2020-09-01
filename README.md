@@ -40,4 +40,4 @@ Keep in mind, if you don't assign the right Permissions to your Files, a bad guy
 I prefer to set them as root, and only executeable for others. This can also be absued, if the Bad guy is root (but then you might have fully different problems)
 
 I just warned you and I don't take warranty for this program, even not partially. 
-You install them on YOUR OWN RISK! 
+You install it on YOUR OWN RISK! 
